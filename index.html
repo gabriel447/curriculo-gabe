@@ -16,16 +16,32 @@
             print-color-adjust: exact;
             margin: 0;
             background-color: #f3f4f6; /* gray-100 */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Container principal */
         #resume {
             background-color: white;
-            max-width: 210mm; /* Largura A4 */
-            margin: 2rem auto;
-            padding: 15mm 20mm; /* Margens internas confortáveis */
+            width: 210mm;
+            max-width: 95vw; /* Margem de segurança para mobile */
+            margin: 0 auto;
+            padding: 15mm 20mm;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             min-height: 297mm;
+            position: relative;
+            transform-origin: top center; /* Importante para o scale funcionar corretamente */
+        }
+        
+        /* Container wrapper para centralizar e aplicar scale se necessário */
+        #resume-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            /* Padding removed for perfect centering */
         }
 
         /* Estilos de Impressão */
@@ -47,6 +63,12 @@
                 padding: 15mm 20mm;
                 box-shadow: none;
                 min-height: auto;
+                transform: none !important; /* Remove escala na impressão */
+            }
+
+            #resume-container {
+                display: block;
+                padding: 0;
             }
 
             .no-print {
@@ -61,6 +83,16 @@
             .break-after-page {
                 page-break-after: always;
                 break-after: page;
+            }
+            
+            /* Ensure all pages are visible when printing */
+            .resume-page {
+                display: block !important;
+            }
+            
+            /* Hide pagination controls on print */
+            #pagination-controls {
+                display: none !important;
             }
         }
 
@@ -78,153 +110,182 @@
 </head>
 
 <body>
-    <div id="resume">
-        <!-- Header -->
-        <header class="pb-2 mb-4">
-            <h1 class="text-4xl font-bold uppercase tracking-wide">Gabriel Senra</h1>
-            
-            <div class="mt-4 flex flex-col space-y-2 text-gray-600 text-sm">
-                <p class="flex items-center">
-                    <svg class="w-5 h-5 mr-3 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    Xaxim - Curitiba/PR
-                </p>
-                <p class="flex items-center">
-                    <svg class="w-5 h-5 mr-3 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                    (41) 9 8799-8159
-                </p>
-                <p class="flex items-center">
-                    <svg class="w-5 h-5 mr-3 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    fullstackgabe@gmail.com
-                </p>
-                <p class="flex items-center">
-                    <svg class="w-5 h-5 mr-3 text-teal-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></path></svg>
-                    linkedin.com/in/fullstackgabe
-                </p>
-            </div>
-        </header>
-
-        <main class="space-y-6">
-            <!-- Objetivo -->
-            <section>
-                <h3 class="text-lg font-bold uppercase tracking-wider mb-0.5">Objetivo</h3>
-                <p class="text-gray-700">
-                    Atuar como <span class="font-semibold">Desenvolvedor Fullstack</span> ou <span class="font-semibold">Analista de Suporte</span>.
-                </p>
-            </section>
-
-            <!-- Habilidades Principais -->
-            <section>
-                <h3 class="text-lg font-bold uppercase tracking-wider mb-0.5">Habilidades Principais</h3>
-                <div class="grid grid-cols-1 gap-y-2 text-sm text-gray-700">
-                    <div><span class="font-semibold">Backend:</span> Node.js, PHP.</div>
-                    <div><span class="font-semibold">Frontend:</span> HTML5, CSS3, JavaScript, jQuery, Bootstrap.</div>
-                    <div><span class="font-semibold">Bancos de Dados:</span> MySQL, Redis.</div>
-                    <div><span class="font-semibold">AWS:</span> Lambda, S3, SQS, RDS.</div>
-                    <div><span class="font-semibold">Versionamento:</span> Git & GitHub.</div>
+    <div id="resume-container">
+        <div id="resume">
+            <!-- Page 1 -->
+        <div id="page-1" class="resume-page">
+            <!-- Header -->
+            <header class="pb-2 mb-4">
+                <h1 class="text-4xl font-bold uppercase tracking-wide">Gabriel Senra</h1>
+                
+                <div class="mt-4 flex flex-col space-y-2 text-gray-600 text-sm">
+                    <p class="flex items-center">
+                        <svg class="w-5 h-5 mr-3 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        Xaxim - Curitiba/PR
+                    </p>
+                    <p class="flex items-center">
+                        <svg class="w-5 h-5 mr-3 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        (41) 9 8799-8159
+                    </p>
+                    <p class="flex items-center">
+                        <svg class="w-5 h-5 mr-3 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        fullstackgabe@gmail.com
+                    </p>
+                    <p class="flex items-center">
+                        <svg class="w-5 h-5 mr-3 text-teal-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></path></svg>
+                        linkedin.com/in/fullstackgabe
+                    </p>
                 </div>
-            </section>
+            </header>
 
-            <!-- Conhecimentos Adicionais -->
-            <section>
-                <h3 class="text-lg font-bold uppercase tracking-wider mb-0.5">Conhecimentos Adicionais</h3>
-                <div class="text-sm text-gray-700 leading-relaxed">
-                    <p>Laravel, Vue, PostgreSQL, MongoDB, TypeScript, Next, React, React-Native, Docker, Linux, Bash BitBucket, Jira, CloudWatch, DynamoDB, AWS SAM, Amazon Q, TailwindCSS, SQLite.</p>
-                </div>
-            </section>
+            <main class="space-y-6">
+                <!-- Objetivo -->
+                <section>
+                    <h3 class="text-lg font-bold uppercase tracking-wider mb-0.5">Objetivo</h3>
+                    <p class="text-gray-700">
+                        Atuar como <span class="font-semibold">Desenvolvedor Fullstack</span> ou <span class="font-semibold">Analista de Suporte</span>.
+                    </p>
+                </section>
 
-            <!-- Formação Acadêmica -->
-            <section>
-                <h3 class="text-lg font-bold uppercase tracking-wider mb-0.5">Formação Acadêmica</h3>
-                <div class="space-y-4">
-                    <div class="experience-item">
-                        <div class="flex justify-between items-baseline mb-1">
-                            <h4 class="text-lg font-semibold text-gray-800">Analise e Desenvolvimento de Sistemas</h4>
-                            <span class="text-sm font-medium text-gray-600">Mar 2020 - Ago 2022</span>
-                        </div>
-                        <p class="text-gray-700 font-medium mb-2">Universidade Positivo</p>
+                <!-- Habilidades Principais -->
+                <section>
+                    <h3 class="text-lg font-bold uppercase tracking-wider mb-0.5">Habilidades Principais</h3>
+                    <div class="grid grid-cols-1 gap-y-2 text-sm text-gray-700">
+                        <div><span class="font-semibold">Backend:</span> Node.js, PHP.</div>
+                        <div><span class="font-semibold">Frontend:</span> HTML5, CSS3, JavaScript, jQuery, Bootstrap.</div>
+                        <div><span class="font-semibold">Bancos de Dados:</span> MySQL, Redis.</div>
+                        <div><span class="font-semibold">AWS:</span> Lambda, S3, SQS, RDS.</div>
+                        <div><span class="font-semibold">Versionamento:</span> Git & GitHub.</div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Idiomas -->
-            <section>
-                <h3 class="text-lg font-bold uppercase tracking-wider mb-0.5">Idiomas</h3>
-                <div class="flex space-x-8 text-sm text-gray-700">
-                    <p><span class="font-semibold">Inglês:</span> Intermediário (B1)</p>
-                </div>
-            </section>
-
-            <!-- Experiências Profissionais -->
-            <section>
-                <h3 class="text-lg font-bold uppercase tracking-wider mb-0.5">Experiências Profissionais</h3>
-                <div class="space-y-6">
-                    <!-- Nova Gestões Fullstack -->
-                    <div class="experience-item break-after-page">
-                        <div class="flex justify-between items-baseline mb-1">
-                            <h4 class="text-lg font-semibold text-gray-800">Desenvolvedor Fullstack</h4>
-                            <span class="text-sm font-medium text-gray-600">Fev 2024 - Set 2025</span>
-                        </div>
-                        <p class="text-gray-700 font-medium mb-2">Nova Gestões Assessoria Financeira</p>
-                        <ul class="list-disc list-outside ml-5 space-y-1 text-sm text-gray-700">
-                            <li>Refatoração de código legado em PHP.</li>
-                            <li>Resolução de bugs em produção.</li>
-                            <li>Tratamento de falhas de segurança.</li>
-                            <li>Desenvolvimento de APIs REST em Node.js com AWS Serverless (SAM).</li>
-                            <li>Execução de operações em bancos de dados MySQL.</li>
-                            <li>Otimização de consultas utilizando Cache com Redis.</li>
-                            <li>Criação de interfaces responsivas com HTML, CSS, jQuery e Bootstrap.</li>
-                        </ul>
+                <!-- Conhecimentos Adicionais -->
+                <section>
+                    <h3 class="text-lg font-bold uppercase tracking-wider mb-0.5">Conhecimentos Adicionais</h3>
+                    <div class="text-sm text-gray-700 leading-relaxed">
+                        <p>Laravel, Vue, PostgreSQL, MongoDB, TypeScript, Next, React, React-Native, Docker, Linux, Bash BitBucket, Jira, CloudWatch, DynamoDB, AWS SAM, Amazon Q, TailwindCSS, SQLite.</p>
                     </div>
+                </section>
 
-                    <!-- Nova Gestões Support (Preserved from history) -->
-                    <div class="experience-item">
-                        <div class="flex justify-between items-baseline mb-1">
-                                                       <h4 class="text-lg font-semibold text-gray-900">Analista de Suporte de TI</h4>
-                            <span class="text-sm font-medium text-gray-600">Fev 2023 - Fev 2024</span>
+                <!-- Formação Acadêmica -->
+                <section>
+                    <h3 class="text-lg font-bold uppercase tracking-wider mb-0.5">Formação Acadêmica</h3>
+                    <div class="space-y-4">
+                        <div class="experience-item">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="text-lg font-semibold text-gray-800">Analise e Desenvolvimento de Sistemas</h4>
+                                <span class="text-sm font-medium text-gray-600">Mar 2020 - Ago 2022</span>
+                            </div>
+                            <p class="text-gray-700 font-medium mb-2">Universidade Positivo</p>
                         </div>
-                        <p class="text-gray-700 font-medium mb-2">Nova Gestões Assessoria Financeira</p>
-                        <ul class="list-disc list-outside ml-5 space-y-1 text-sm text-gray-700">
-                            <li>Instalação e atualização de sistemas operacionais.</li>
-                            <li>Configuração de redes (IP, Proxy, DNS, DHCP).</li>
-                            <li>Atendimento de chamados presenciais ou remotos por RDP.</li>
-                            <li>Substituição de hardware e periféricos defeituosos.</li>
-                            <li>Gerenciamento de usuários no Active Directory (AD).</li>
-                            <li>Configuração de ramais VOIP e VPN.</li>
-                        </ul>
                     </div>
+                </section>
 
-                    <!-- Techbra -->
-                    <div class="experience-item">
-                        <div class="flex justify-between items-baseline mb-1">
-                            <h4 class="text-lg font-semibold text-gray-900">Técnico de Hardware e Software</h4>
-                            <span class="text-sm font-medium text-gray-600">Out 2021 - Mar 2022</span>
-                        </div>
-                        <p class="text-gray-700 font-medium mb-2">Techbra Tecnologia</p>
-                        <ul class="list-disc list-outside ml-5 space-y-1 text-sm text-gray-700">
-                            <li>Testes e diagnóstico de defeitos em dispositivos móveis e laptops.</li>
-                            <li>Manutenção de hardware e triagem para reparo ou descarte.</li>
-                            <li>Organização e controle de fluxo de aparelhos no centro de distribuição.</li>
-                        </ul>
+                <!-- Idiomas -->
+                <section>
+                    <h3 class="text-lg font-bold uppercase tracking-wider mb-0.5">Idiomas</h3>
+                    <div class="flex space-x-8 text-sm text-gray-700">
+                        <p><span class="font-semibold">Inglês:</span> Intermediário (B1)</p>
                     </div>
+                </section>
 
-                    <!-- OTG -->
-                    <div class="experience-item">
-                        <div class="flex justify-between items-baseline mb-1">
-                            <h4 class="text-lg font-semibold text-gray-800">Operador de Datacenter</h4>
-                            <span class="text-sm font-medium text-gray-600">Mar 2019 - Mar 2020</span>
+                <!-- Experiências Profissionais (Parte 1) -->
+                <section>
+                    <h3 class="text-lg font-bold uppercase tracking-wider mb-0.5">Experiências Profissionais</h3>
+                    <div class="space-y-6">
+                        <!-- Nova Gestões Fullstack -->
+                        <div class="experience-item break-after-page">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="text-lg font-semibold text-gray-800">Desenvolvedor Fullstack</h4>
+                                <span class="text-sm font-medium text-gray-600">Fev 2024 - Set 2025</span>
+                            </div>
+                            <p class="text-gray-700 font-medium mb-2">Nova Gestões Assessoria Financeira</p>
+                            <ul class="list-disc list-outside ml-5 space-y-1 text-sm text-gray-700">
+                                <li>Refatoração de código legado em PHP.</li>
+                                <li>Resolução de bugs em produção.</li>
+                                <li>Tratamento de falhas de segurança.</li>
+                                <li>Desenvolvimento de APIs REST em Node.js com AWS Serverless (SAM).</li>
+                                <li>Execução de operações em bancos de dados MySQL.</li>
+                                <li>Otimização de consultas utilizando Cache com Redis.</li>
+                                <li>Criação de interfaces responsivas com HTML, CSS, jQuery e Bootstrap.</li>
+                            </ul>
                         </div>
-                        <p class="text-gray-700 font-medium mb-2">OTG Open Technologies Group</p>
-                        <ul class="list-disc list-outside ml-5 space-y-1 text-sm text-gray-700">
-                            <li>Monitoramento de infraestrutura e suporte a técnicos no local.</li>
-                            <li>Execução de checklists operacionais e medição de temperatura.</li>
-                            <li>Mapeamento de racks, servidores e cabeamento de fibra óptica.</li>
-                            <li>Registro de incidentes e monitoramento de alertas de segurança.</li>
-                        </ul>
                     </div>
-                </div>
-            </section>
-        </main>
+                </section>
+            </main>
+        </div>
+
+        <!-- Page 2 -->
+        <div id="page-2" class="resume-page hidden">
+            <main class="space-y-6">
+                 <!-- Experiências Profissionais (Parte 2) -->
+                 <section>
+                    <div class="space-y-6">
+                        <!-- Nova Gestões Support (Preserved from history) -->
+                        <div class="experience-item">
+                            <div class="flex justify-between items-baseline mb-1">
+                                                        <h4 class="text-lg font-semibold text-gray-900">Analista de Suporte de TI</h4>
+                                <span class="text-sm font-medium text-gray-600">Fev 2023 - Fev 2024</span>
+                            </div>
+                            <p class="text-gray-700 font-medium mb-2">Nova Gestões Assessoria Financeira</p>
+                            <ul class="list-disc list-outside ml-5 space-y-1 text-sm text-gray-700">
+                                <li>Instalação e atualização de sistemas operacionais.</li>
+                                <li>Configuração de redes (IP, Proxy, DNS, DHCP).</li>
+                                <li>Atendimento de chamados presenciais ou remotos por RDP.</li>
+                                <li>Substituição de hardware e periféricos defeituosos.</li>
+                                <li>Gerenciamento de usuários no Active Directory (AD).</li>
+                                <li>Configuração de ramais VOIP e VPN.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Techbra -->
+                        <div class="experience-item">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="text-lg font-semibold text-gray-900">Técnico de Hardware e Software</h4>
+                                <span class="text-sm font-medium text-gray-600">Out 2021 - Mar 2022</span>
+                            </div>
+                            <p class="text-gray-700 font-medium mb-2">Techbra Tecnologia</p>
+                            <ul class="list-disc list-outside ml-5 space-y-1 text-sm text-gray-700">
+                                <li>Testes e diagnóstico de defeitos em dispositivos móveis e laptops.</li>
+                                <li>Manutenção de hardware e triagem para reparo ou descarte.</li>
+                                <li>Organização e controle de fluxo de aparelhos no centro de distribuição.</li>
+                            </ul>
+                        </div>
+
+                        <!-- OTG -->
+                        <div class="experience-item">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="text-lg font-semibold text-gray-800">Operador de Datacenter</h4>
+                                <span class="text-sm font-medium text-gray-600">Mar 2019 - Mar 2020</span>
+                            </div>
+                            <p class="text-gray-700 font-medium mb-2">OTG Open Technologies Group</p>
+                            <ul class="list-disc list-outside ml-5 space-y-1 text-sm text-gray-700">
+                                <li>Monitoramento de infraestrutura e suporte a técnicos no local.</li>
+                                <li>Execução de checklists operacionais e medição de temperatura.</li>
+                                <li>Mapeamento de racks, servidores e cabeamento de fibra óptica.</li>
+                                <li>Registro de incidentes e monitoramento de alertas de segurança.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
     </div>
+    </div>
+
+    <!-- Carousel Navigation Arrows -->
+    <button id="prev-btn" onclick="showPage(1)" class="no-print fixed left-4 top-1/2 transform -translate-y-1/2 bg-white text-teal-600 p-3 rounded-full shadow-lg hover:bg-teal-50 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200 z-40" aria-label="Página anterior">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+
+    <button id="next-btn" onclick="showPage(2)" class="no-print fixed right-4 top-1/2 transform -translate-y-1/2 bg-white text-teal-600 p-3 rounded-full shadow-lg hover:bg-teal-50 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200 z-40" aria-label="Próxima página">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
 
     <!-- Botão Flutuante de Impressão -->
     <button onclick="window.print()"
@@ -235,5 +296,88 @@
         </svg>
         <span>Salvar PDF</span>
     </button>
+
+    <script>
+        function showPage(pageNumber) {
+            const page1 = document.getElementById('page-1');
+            const page2 = document.getElementById('page-2');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            if (pageNumber === 1) {
+                page1.classList.remove('hidden');
+                page2.classList.add('hidden');
+                prevBtn.disabled = true;
+                nextBtn.disabled = false;
+            } else {
+                page1.classList.add('hidden');
+                page2.classList.remove('hidden');
+                prevBtn.disabled = false;
+                nextBtn.disabled = true;
+            }
+            
+            // Força o recálculo do layout
+            setTimeout(fitResumeToScreen, 10);
+        }
+
+        function fitResumeToScreen() {
+            const resume = document.getElementById('resume');
+            const container = document.getElementById('resume-container');
+            const margin = 100; // Espaço vertical total aumentado (50px em cima, 50px embaixo)
+            const sideMargin = 160; // Espaço para setas laterais (80px cada lado)
+            
+            // Reseta para calcular altura natural
+            resume.style.transform = 'none';
+            container.style.height = 'auto';
+            container.style.overflow = 'visible';
+            
+            const windowHeight = window.innerHeight;
+            const windowWidth = window.innerWidth;
+            const resumeHeight = resume.offsetHeight;
+            const resumeWidth = resume.offsetWidth;
+            
+            const availableHeight = windowHeight - margin;
+            const availableWidth = windowWidth - sideMargin;
+            
+            let scale = 1;
+            
+            // Calcula escala baseada em ambas as dimensões
+            const scaleY = availableHeight / resumeHeight;
+            const scaleX = availableWidth / resumeWidth;
+            
+            // Se precisar reduzir para caber na tela
+            if (scaleY < 1 || scaleX < 1) {
+                scale = Math.min(scaleY, scaleX);
+            }
+            
+            // Aplica a escala se necessário
+            if (scale < 1) {
+                resume.style.transform = `scale(${scale})`;
+                
+                // Ajusta a altura do container para o tamanho VISUAL do currículo
+                // O flexbox do body vai centralizar o container verticalmente
+                container.style.height = `${resumeHeight * scale}px`;
+                container.style.overflow = 'hidden';
+            }
+        }
+
+        // Observer para monitorar mudanças no tamanho do currículo
+        const resizeObserver = new ResizeObserver(entries => {
+            window.requestAnimationFrame(() => {
+                fitResumeToScreen();
+            });
+        });
+
+        // Inicialização e Event Listeners
+        window.addEventListener('load', () => {
+            const resume = document.getElementById('resume');
+            if (resume) {
+                resizeObserver.observe(resume);
+                fitResumeToScreen();
+            }
+        });
+
+        window.addEventListener('resize', fitResumeToScreen);
+    </script>
 </body>
 </html>
