@@ -56,43 +56,46 @@
                 margin: 0;
             }
 
-            #resume {
-                width: 100%;
-                max-width: none;
-                margin: 0;
-                padding: 15mm 20mm;
-                box-shadow: none;
-                min-height: auto;
-                transform: none !important; /* Remove escala na impressão */
+            #resume-container {
+                display: block !important;
+                padding: 0 !important;
+                height: auto !important;
+                overflow: visible !important;
             }
 
-            #resume-container {
-                display: block;
-                padding: 0;
+            #resume {
+                width: 100% !important;
+                max-width: none !important;
+                margin: 0 !important;
+                padding: 15mm 20mm !important;
+                box-shadow: none !important;
+                min-height: auto !important;
+                transform: none !important;
+            }
+
+            .resume-page {
+                display: block !important;
+                height: auto !important;
+                page-break-after: always; /* Força quebra após cada página */
+            }
+
+            /* Remove quebra da última página para não gerar folha em branco */
+            .resume-page:last-child {
+                page-break-after: auto;
             }
 
             .no-print {
                 display: none !important;
             }
 
-            /* Quebras de página inteligentes */
+            /* Garante que elementos internos não quebrem feio */
             section, .experience-item {
                 break-inside: avoid;
             }
 
-            .break-after-page {
-                page-break-after: always;
-                break-after: page;
-            }
-            
-            /* Ensure all pages are visible when printing */
-            .resume-page {
-                display: block !important;
-            }
-            
-            /* Hide pagination controls on print */
-            #pagination-controls {
-                display: none !important;
+            /* Adiciona espaçamento extra no topo da segunda página na impressão */
+            #page-2 {
+                padding-top: 15mm !important;
             }
         }
 
@@ -194,7 +197,7 @@
                     <h3 class="text-lg font-bold uppercase tracking-wider mb-0.5">Experiências Profissionais</h3>
                     <div class="space-y-6">
                         <!-- Nova Gestões Fullstack -->
-                        <div class="experience-item break-after-page">
+                        <div class="experience-item">
                             <div class="flex justify-between items-baseline mb-1">
                                 <h4 class="text-lg font-semibold text-gray-800">Desenvolvedor Fullstack</h4>
                                 <span class="text-sm font-medium text-gray-600">Fev 2024 - Set 2025</span>
