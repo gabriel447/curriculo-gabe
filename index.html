@@ -86,7 +86,7 @@
                 width: 100% !important;
                 max-width: none !important;
                 margin: 0 !important;
-                padding: 10mm 20mm !important;
+                padding: 10mm 20mm 16mm !important;
                 box-shadow: none !important;
                 min-height: auto !important;
                 transform: none !important;
@@ -110,6 +110,11 @@
                 break-inside: avoid;
             }
 
+            #page-1,
+            #page-2 {
+                display: block !important;
+            }
+
             #page-2 {
                 padding-top: 15mm !important;
             }
@@ -125,9 +130,9 @@
     <div id="resume-container">
         <div id="resume">
         <div id="page-1" class="resume-page">
-            <header class="pb-2 mb-3 md:mb-5 print:mb-5">
+            <header class="pb-1 mb-2 md:mb-5 print:mb-5">
                 <h1 class="text-2xl md:text-4xl print:text-4xl font-bold uppercase tracking-wide">Gabriel Senra</h1>
-                
+
                 <div class="mt-2 md:mt-4 print:mt-4 flex flex-col space-y-1 md:space-y-2 print:space-y-2 text-gray-600 text-xs md:text-sm print:text-sm">
                     <p class="flex items-center">
                         <svg class="w-4 h-4 md:w-5 md:h-5 print:w-5 print:h-5 mr-2 md:mr-3 print:mr-3 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
@@ -152,35 +157,35 @@
                 </div>
             </header>
 
-            <main class="space-y-5 md:space-y-6 print:space-y-6">
+            <main class="space-y-4 md:space-y-6 print:space-y-6">
                 <section>
-                    <h3 class="text-base md:text-lg print:text-lg font-bold uppercase tracking-wider mb-0.5">Objetivo</h3>
+                    <h3 class="text-sm md:text-lg print:text-lg font-bold uppercase tracking-wider mb-1">Objetivo</h3>
                     <p class="text-gray-700 text-xs md:text-sm print:text-sm">
                         Atuar como <span class="font-semibold">Desenvolvedor Fullstack</span> no desenvolvimento de APIs REST e interfaces web responsivas.
                     </p>
                 </section>
 
                 <section>
-                    <h3 class="text-base md:text-lg print:text-lg font-bold uppercase tracking-wider mb-0.5">Habilidades Principais</h3>
+                    <h3 class="text-sm md:text-lg print:text-lg font-bold uppercase tracking-wider mb-1">Habilidades Principais</h3>
                     <div class="grid grid-cols-1 gap-y-1 md:gap-y-2 print:gap-y-2 text-xs md:text-sm print:text-sm text-gray-700">
                         <div><span class="font-semibold">Backend:</span> Node.js (NestJS, Fastify), PHP (Laravel), TypeScript.</div>
                         <div><span class="font-semibold">Frontend:</span> Vue.js 3 (Pinia, Composition API), TypeScript, HTML5, CSS3, Tailwind CSS.</div>
                         <div><span class="font-semibold">Bancos de Dados:</span> PostgreSQL, MySQL, MongoDB, Redis, Prisma ORM.</div>
-                        <div><span class="font-semibold">Cloud & DevOps:</span> AWS (Lambda, S3, SQS, RDS, DynamoDB, API Gateway), Docker.</div>
-                        <div><span class="font-semibold">IA & Produtividade:</span> Gemini CLI, Claude Code, OpenAI API.</div>
-                        <div><span class="font-semibold">Testes:</span> Jest, Pest, Vitest.</div>
+                        <div><span class="font-semibold">DevOps & DevOps:</span> Docker, AWS (Lambda, S3, SQS, RDS, DynamoDB, API Gateway).</div>
+                        <div><span class="font-semibold">Testes Unitários:</span> Jest, Pest, Vitest.</div>
+                        <div><span class="font-semibold">Gestão e Versionamento:</span> Git & GitHub.</div>
                     </div>
                 </section>
 
                 <section>
-                    <h3 class="text-base md:text-lg print:text-lg font-bold uppercase tracking-wider mb-0.5">Conhecimentos Adicionais</h3>
+                    <h3 class="text-sm md:text-lg print:text-lg font-bold uppercase tracking-wider mb-1">Conhecimentos Adicionais</h3>
                     <div class="text-xs md:text-sm print:text-sm text-gray-700 leading-relaxed">
                         <p>Clean Code, SOLID, Design Patterns, JWT, OAuth2, Axios, Swagger.</p>
                     </div>
                 </section>
 
                 <section>
-                    <h3 class="text-base md:text-lg print:text-lg font-bold uppercase tracking-wider mb-0.5">Formação Acadêmica</h3>
+                    <h3 class="text-sm md:text-lg print:text-lg font-bold uppercase tracking-wider mb-1">Formação Acadêmica</h3>
                     <div class="space-y-2 md:space-y-4 print:space-y-4">
                         <div class="experience-item">
                             <div class="flex justify-between items-baseline mb-1">
@@ -193,18 +198,18 @@
                 </section>
 
                 <section>
-                    <h3 class="text-base md:text-lg print:text-lg font-bold uppercase tracking-wider mb-0.5">Idiomas</h3>
+                    <h3 class="text-sm md:text-lg print:text-lg font-bold uppercase tracking-wider mb-1">Idiomas</h3>
                     <div class="flex space-x-8 text-xs md:text-sm print:text-sm text-gray-700">
                         <p><span class="font-semibold">Inglês:</span> Intermediário (B1)</p>
                     </div>
                 </section>
 
                 <section>
-                    <h3 class="text-base md:text-lg print:text-lg font-bold uppercase tracking-wider mb-0.5">Experiências Profissionais</h3>
+                    <h3 class="text-sm md:text-lg print:text-lg font-bold uppercase tracking-wider mb-1">Experiências Profissionais</h3>
                     <div class="space-y-4 md:space-y-6 print:space-y-6">
                         <div class="experience-item">
                             <div class="flex justify-between items-baseline mb-1">
-                                <h4 class="text-sm md:text-lg print:text-lg font-semibold text-gray-800">Desenvolvedor Fullstack</h4>
+                                <h4 class="text-sm md:text-base print:text-base font-semibold text-gray-800">Desenvolvedor Fullstack</h4>
                                 <span class="text-xs md:text-sm print:text-sm font-medium text-gray-600">Fev 2024 - Set 2025</span>
                             </div>
                             <p class="text-gray-700 font-medium mb-1 md:mb-2 print:mb-2 text-xs md:text-sm print:text-sm">Nova Gestões Assessoria Financeira</p>
@@ -227,7 +232,7 @@
         <div id="page-2" class="resume-page hidden">
             <main class="space-y-4 md:space-y-6 print:space-y-6">
                  <section>
-                    <div class="space-y-4 md:space-y-6 print:space-y-6">
+                    <div class="space-y-4 md:space-y-6 print:space-y-6 pt-2">
                         <div class="experience-item">
                             <div class="flex justify-between items-baseline mb-1">
                                 <h4 class="text-sm md:text-lg print:text-lg font-semibold text-gray-900">Analista de Suporte de TI</h4>
